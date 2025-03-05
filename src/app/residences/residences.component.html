@@ -1,23 +1,67 @@
-<div class="residence-container">
-
-
-
-
-  <button routerLink="/AddRes" class="btn btn-secondary">
-    <i class="fas fa-plus"></i> Add Residence
+<div class="container mt-5">
+  <!-- Section "Add Residence" et Filtre de recherche -->
+  <div class="d-flex justify-content-between align-items-center mb-2">
+      <!-- Bouton "Add Residence" -->
+      <button class="btn btn-primary btn-lg px-1" [routerLink]="['/addRes']" style="border-radius: 15px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+      ➕ Add Residence
   </button>
-  
-    <ul class="residence-list">
-        <li class="residence-item" *ngFor="let r of listResidences">
-            <img class="residence-image" [src]="r.image" alt="residence">
-            <div class="residence-info">
-                <h2 class="residence-name">{{r.name}}</h2>
-                <p class="residence-status">{{r.status}}</p>
-                <button class="btn btn-danger"  (click)="supp(r.id)">supprimer</button>
-                <button class="btn btn-primary" [routerLink]="['/residenceDetail',r.id]">Detail</button>
-                <button class="btn btn-info" [routerLink]="['/AddRes',r.id]">update</button>
-  
-            </div>
-        </li>
-    </ul>
+
+      <!-- Filtre de recherche -->
+      <input type="text" class="form-control w-50 shadow-sm" placeholder="Rechercher par adresse" [(ngModel)]="searchAdresse" />
   </div>
+
+  <!-- Conteneur des résidences -->
+  <div class="row">
+      <div class="col-md-4 mb-4" *ngFor="let residence of filterResidence()">
+          <div class="card h-100">
+              <img [src]="residence.image" alt="{{ residence.name }}" class="card-img-top" style="max-height: 150px; object-fit: cover;" />
+              <div class="card-body">
+                  <h5 class="card-title">{{ residence.name }}</h5>
+
+                  <!-- Adresse -->
+                  <p *ngIf="residence.address !== 'inconnu'" class="text-muted">
+                      <strong>Adresse :</strong> {{ residence.address }}
+                  </p>
+
+
+
+                  <!-- Statut avec NgSwitch -->
+                  <div [ngSwitch]="residence.status">
+                      <p *ngSwitchCase="'Disponible'" class="badge bg-success">✅ Disponible</p>
+                      <p *ngSwitchCase="'En Construction'" class="badge bg-warning text-dark">🚧 En Construction</p>
+                      <p *ngSwitchCase="'Vendu'" class="badge bg-danger">❌ Vendu</p>
+                      <p *ngSwitchDefault class="badge bg-secondary">⚪ Statut inconnu</p>
+                  </div>
+              </div>
+              <div class="card-footer d-flex justify-content-between">
+                  <!-- Boutons d'actions -->
+                  <button class="btn btn-outline-primary btn-sm" (click)="like(residence)">
+                  Like
+              </button>
+                  <button class="btn btn-outline-info btn-sm" [routerLink]="['/details', residence.id]">
+                  Details
+              </button>
+                  <button class="btn btn-outline-info btn-sm" [routerLink]="['/updateR', residence.id]">
+                update
+            </button>
+                  <button class="btn btn-outline-danger btn-sm" (click)="supp(residence.id)">
+                  Delete
+              </button>
+                  <button class="btn btn-outline-secondary btn-sm" [routerLink]="['/showAppart', residence.id]">
+                  Show Appart
+              </button>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <!-- Résidences favorites -->
+  <div class="favorites mt-5">
+      <h3>Favoris</h3>
+      <ul class="list-group">
+          <li *ngFor="let fav of listFavorites" class="list-group-item d-flex justify-content-between align-items-center">
+              {{ fav.name }}
+          </li>
+      </ul>
+  </div>
+</div>

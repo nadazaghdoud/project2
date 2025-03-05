@@ -9,6 +9,9 @@ import { ResidenceService } from '../service/reidence.service';
   styleUrls: ['./residences.component.css']
 })
 export class ResidenceComponent {
+  searchAdresse = '';
+    listFavorites:Residence[]=[];
+  listResidences:Residence[]=[]
 
   /* listResidences:Residence[]=[
      {id:1,"name": "El fel","address":"Borj Cedria",
@@ -24,7 +27,7 @@ export class ResidenceComponent {
      ];
  
      */
-     listResidences!: Residence[] ;
+     
     constructor(private rs:ResidenceService) { }
     ngOnInit(){
       this.rs.getResidence().subscribe(
@@ -33,6 +36,26 @@ export class ResidenceComponent {
       )
  
     }
+    showLoc(adress : string){
+      if (adress === "inconnu"){
+         alert("Adresse inconnue");
+      }else {
+         console.log("Adresse: "+adress);
+      }
+    }
+ 
+    like(r:Residence){
+     if (!this.listFavorites.includes(r)){
+       this.listFavorites.push(r);
+     }
+    }
+ 
+   filterResidence(): Residence[] {
+     return this.listResidences.filter((residence) => {
+       return residence.address.toLowerCase().includes
+       (this.searchAdresse.toLowerCase());
+     } );
+   }
  
     supp(id:number){
      this.rs.DeleteResidence(id).subscribe(
