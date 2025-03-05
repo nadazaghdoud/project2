@@ -1,0 +1,104 @@
+
+/* Conteneur principal */
+.residence-container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* En-tête avec le titre et le bouton */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .header h1 {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  /* Bouton Ajouter Résidence */
+  .btn-add-residence {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .btn-add-residence:hover {
+    background-color: #218838;
+  }
+  
+  /* Liste des résidences */
+  .residence-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  /* Élément de la liste */
+  .residence-item {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .residence-item:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Image de la résidence */
+  .residence-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  /* Informations sur la résidence */
+  .residence-info {
+    margin-top: 10px;
+  }
+  
+  .residence-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .residence-status {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  /* Bouton En savoir plus */
+  .btn-primary {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 12px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  

@@ -1,0 +1,23 @@
+<div class="residence-container">
+
+
+
+
+  <button routerLink="/AddRes" class="btn btn-secondary">
+    <i class="fas fa-plus"></i> Add Residence
+  </button>
+  
+    <ul class="residence-list">
+        <li class="residence-item" *ngFor="let r of listResidences">
+            <img class="residence-image" [src]="r.image" alt="residence">
+            <div class="residence-info">
+                <h2 class="residence-name">{{r.name}}</h2>
+                <p class="residence-status">{{r.status}}</p>
+                <button class="btn btn-danger"  (click)="supp(r.id)">supprimer</button>
+                <button class="btn btn-primary" [routerLink]="['/residenceDetail',r.id]">Detail</button>
+                <button class="btn btn-info" [routerLink]="['/AddRes',r.id]">update</button>
+  
+            </div>
+        </li>
+    </ul>
+  </div>

@@ -1,0 +1,33 @@
+<p>add-residence works!</p>
+
+     
+<form [formGroup]="addForm" (ngSubmit)="SaveResidence(addForm)">
+
+        <div class="form-group">
+          <label >name</label>
+          <input type="text" class="form-control" formControlName="name" >
+         
+        </div>
+        <div class="form-group">
+            <label >address</label>
+            <input type="text" class="form-control" formControlName="address" >
+           
+        </div>
+        <div class="form-group">
+            <label >Image</label>
+            <input type="file" class="form-control" formControlName="image" >
+           
+        </div>
+        <div class="form-group">
+            <label >Status</label>
+            <select>
+                <option value>chose a status</option>
+                <option value="Vendue">Vendue</option>
+                <option value="En construction">En construction</option>
+                <option value="disponible">disponible</option>
+            </select>
+           
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+

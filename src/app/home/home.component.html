@@ -1,0 +1,77 @@
+
+<!-- {{title}} <table class="table" border="3">
+
+
+    <tr>
+        <td>title</td>
+        <td>price </td>
+        <td>quantity</td>
+        <td>like</td>
+        <td>image</td>
+    </tr>
+    <tr *ngFor="let p of products">
+        <td> {{p.title}}</td>
+        <td> {{p.price}}</td>
+        <td> {{p.quantity}}</td>
+        <td> {{p.like}}</td>
+        <td> <img src={{p.img}} alt="iphone image" style="width: 50px;height: 20px;">
+        </td>
+    </tr>
+    </table>
+
+
+  -->
+
+  <div class="container mt-4">
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Couleur de fond:</label>
+                <input type="text" class="form-control" [(ngModel)]="color" placeholder="Entrez une couleur">
+            </div>
+            <p [style.backgroundColor]="color"> PropertyBindng</p>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Prix du produit:</label>
+                <input type="number" id="priceInput" class="form-control" [(ngModel)]="prixProduit" placeholder="Filtrer par prix">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mb-4" *ngFor="let product of products; let i = index">
+            <div *ngIf="product.price == prixProduit || prixProduit == null">
+                <div class="card h-100 shadow-sm">
+                    <img class="card-img-top p-3" [src]="product.img" alt="{{ product.title }}">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">{{ product.title }}</h5>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="text-primary"><strong>Prix:</strong> {{ product.price }} TND</span>
+                            <span class="badge bg-secondary">Stock: {{ product.quantity }}</span>
+                        </div>
+                        <p class="card-text">
+                            <i class="fas fa-heart text-danger"></i> {{ product.like }} likes
+                        </p>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-outline-primary btn-sm" (click)="like(i)">
+                <i class="fas fa-thumbs-up"></i> Like
+              </button>
+
+                            <button class="btn btn-outline-primary btn-sm" [routerLink]="['/detail', product.id]">
+                <i class="fas fa-thumbs-up"></i> details
+              </button>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <div class="d-flex justify-content-between">
+                            <a href="#" class="btn btn-link">Voir plus</a>
+                            <button class="btn btn-primary" [disabled]="product.quantity == 0" (click)="acheterProduit(product)">
+                <i class="fas fa-shopping-cart"></i> Acheter
+              </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
